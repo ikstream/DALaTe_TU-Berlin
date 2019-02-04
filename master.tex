@@ -20,7 +20,8 @@ openright]{book}
 \usepackage[USenglish,german]{babel}
 \usepackage{color,pstricks}
 % To allow me to use letters with accent
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Fonts
 %\usepackage{lmodern}
@@ -109,10 +110,10 @@ openright]{book}
 }
 
 % Some math definitions
-\input{mathdef}
+\input{local_tex_packages/mathdef}
 
 % Style headings + headers and footers
-\input{style}
+\input{local_tex_packages/style}
 
 % Removing master, slows down the compilation
 \includeonly{
