@@ -1,7 +1,7 @@
-\chapter{Development of an Algorithm}
+\chapter{Measurements}
 \label{chap:controller}
 
-In this chapter, we present the design of our controller, describe  our implementation, and discuss our validation and performance evaluation results.
+In this chapter, the measurements results and test are discussed.
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -37,81 +37,81 @@ The algorithm operates in ine part: The pseudocode depicted in Fig.~\ref{fig:blu
 
 %\newpage
 %%%%%%%%%%%% PSYDOCODE of BLUES
-\begin{figure}
- \begin{pseudocode}[ruled]{Blues}{ }
-\GLOBAL{min\_update, min\_P, max\_P,\Delta_{inc},\Delta_{dec},\Delta,\delta_{inc},\delta_{dec}, \delta_{emergency}}\\
- \PROCEDURE{init}{ }
-     \forall R:\\
-        ref\_pwr[R], P\_data[R], P\_ack  \GETS max\_P; P\_sample[R] \GETS P\_ref[R]-\Delta\\
-        \CALL{Init\_Stats}{}
-\ENDPROCEDURE
-\PROCEDURE{collect\_stats}{tx\textrm{-}feedback}
-	%\COMMENT{For each rate R in the mrr retry chain}\\
-	\FOREACH R \in tx\textrm{-}feedback.retry\_chain \DO\\
-	\BEGIN
-		%IF\ tx\textrm{-}feedback.got\_ACK(R) == true
-		%\THEN
-		%	success \GETS 1
-		%\ELSE
-		%	success \GETS 0\\
-		success  \GETS tx\textrm{-}feedback.got\_ACK(R) == true\\
-		\IF tx\textrm{-}feedback.power == ref\_power[R]
-		\THEN
-		%\BEGIN
-			attempt\_ref[R]++; success\_ref[R]+=success;
-		%\END
-		\ELSEIF tx\textrm{-}feedback.power == data\_power[R]
-		\THEN
-		%\BEGIN
-			attempt\_data[R]++; success\_data[R]+=success;
-		%\END
-		\ELSEIF tx\textrm{-}feedback\_power == sample\_power[R]
-		\THEN
-		%\BEGIN
-			attempt\_sample[R]++; success\_sample[R]+=success;\\
-		%\END\\
-		\COMMENT{After sufficient samples, update Blues statistics}\\
-		\IF attempts[sample\_pwr[R]] > update\_thresh \AND attempt\_ref[R] > update\_thresh	
-		\THEN
-			\CALL{Blues\_Update\_Stats}{R}\\
-		\IF attempts[data\_pwr[R]] > update\_thresh
-		\THEN
-			\CALL{EWMA}{\alpha,p_{success}^{sample}[R], \frac{success\_sample[R]}{attempt\_sample[R]}}\\
-	\END\\
-	%\COMMENT{Sort all rates according to current throughput}\\
-	sorted\_rate\_list \GETS \CALL{Sort\_by\_Throughput}{full\_rate\_set}\\
-	sampling\_rate\_set \GETS subset[sorted\_rate\_set]		   
-\ENDPROCEDURE
-
-\PROCEDURE{Blues\_Update\_Stats}{R}
-		\CALL{EWMA}{\alpha,p_{success}^{ref}[R], success\_ref[R/attempt\_ref[R]}\\
-		\CALL{EWMA}{\alpha,p_{success}^{data}[R], success\_data[R]/attempt\_data[R]}\\
-		\CALL{EWMA}{\alpha,p_{success}^{sample}[R], success\_sample[R]/attempt\_sample[R]}\\
-
-		\COMMENT{If throughput collapse, reset to initial settings}\\
-		\IF p_{success}^{data}[R] < \delta_{emergency} \OR
-		current\_Thr[R] == 0
-		\THEN
-		%\BEGIN
-			\CALL{Init}{}\\
-			%\CALL{Reset\_Statistic}{R}\\
-		%\END\\
-		%
-		\COMMENT{(1) Update  $sample\_power$,  $ref\_power$ and $data\_power$}\\
-		\CALL{inc\_power}{P\_sample[R], p_{success}^{sample}[R], p_{success}^{ref}[R]}\\
-		\CALL{dec\_power}{P\_sample[R], p_{success}^{data}[R], p_{success}^{ref}[R]}\\
-		%
-		%\COMMENT{(2) Update $ref\_power$}\\
-		\CALL{inc\_power}{P\_ref[R], p_{success}^{ref}[R], 1}\\
-		\CALL{dec\_power}{P\_ref[R], p_{success}^{ref}[R], 1}\\
-		%
-		%\COMMENT{(3) Update $data\_power$}\\
-		P\_data[R] = P\_sample[R] +  \Delta
-\ENDPROCEDURE
- \end{pseudocode}
-\caption{Blues control algorithm}
-\label{fig:blues}
-\end{figure}
+%\begin{figure}
+% \begin{pseudocode}[ruled]{Blues}{ }
+%\GLOBAL{min\_update, min\_P, max\_P,\Delta_{inc},\Delta_{dec},\Delta,\delta_{inc},\delta_{dec}, \delta_{emergency}}\\
+% \PROCEDURE{init}{ }
+%     \forall R:\\
+%        ref\_pwr[R], P\_data[R], P\_ack  \GETS max\_P; P\_sample[R] \GETS P\_ref[R]-\Delta\\
+%        \CALL{Init\_Stats}{}
+%\ENDPROCEDURE
+%\PROCEDURE{collect\_stats}{tx\textrm{-}feedback}
+%	%\COMMENT{For each rate R in the mrr retry chain}\\
+%	\FOREACH R \in tx\textrm{-}feedback.retry\_chain \DO\\
+%	\BEGIN
+%		%IF\ tx\textrm{-}feedback.got\_ACK(R) == true
+%		%\THEN
+%		%	success \GETS 1
+%		%\ELSE
+%		%	success \GETS 0\\
+%		success  \GETS tx\textrm{-}feedback.got\_ACK(R) == true\\
+%		\IF tx\textrm{-}feedback.power == ref\_power[R]
+%		\THEN
+%		%\BEGIN
+%			attempt\_ref[R]++; success\_ref[R]+=success;
+%		%\END
+%		\ELSEIF tx\textrm{-}feedback.power == data\_power[R]
+%		\THEN
+%		%\BEGIN
+%			attempt\_data[R]++; success\_data[R]+=success;
+%		%\END
+%		\ELSEIF tx\textrm{-}feedback\_power == sample\_power[R]
+%		\THEN
+%		%\BEGIN
+%			attempt\_sample[R]++; success\_sample[R]+=success;\\
+%		%\END\\
+%		\COMMENT{After sufficient samples, update Blues statistics}\\
+%		\IF attempts[sample\_pwr[R]] > update\_thresh \AND attempt\_ref[R] > update\_thresh	
+%		\THEN
+%			\CALL{Blues\_Update\_Stats}{R}\\
+%		\IF attempts[data\_pwr[R]] > update\_thresh
+%		\THEN
+%			\CALL{EWMA}{\alpha,p_{success}^{sample}[R], \frac{success\_sample[R]}{attempt\_sample[R]}}\\
+%	\END\\
+%	%\COMMENT{Sort all rates according to current throughput}\\
+%	sorted\_rate\_list \GETS \CALL{Sort\_by\_Throughput}{full\_rate\_set}\\
+%	sampling\_rate\_set \GETS subset[sorted\_rate\_set]		   
+%\ENDPROCEDURE
+%
+%\PROCEDURE{Blues\_Update\_Stats}{R}
+%		\CALL{EWMA}{\alpha,p_{success}^{ref}[R], success\_ref[R/attempt\_ref[R]}\\
+%		\CALL{EWMA}{\alpha,p_{success}^{data}[R], success\_data[R]/attempt\_data[R]}\\
+%		\CALL{EWMA}{\alpha,p_{success}^{sample}[R], success\_sample[R]/attempt\_sample[R]}\\
+%
+%		\COMMENT{If throughput collapse, reset to initial settings}\\
+%		\IF p_{success}^{data}[R] < \delta_{emergency} \OR
+%		current\_Thr[R] == 0
+%		\THEN
+%		%\BEGIN
+%			\CALL{Init}{}\\
+%			%\CALL{Reset\_Statistic}{R}\\
+%		%\END\\
+%		%
+%		\COMMENT{(1) Update  $sample\_power$,  $ref\_power$ and $data\_power$}\\
+%		\CALL{inc\_power}{P\_sample[R], p_{success}^{sample}[R], p_{success}^{ref}[R]}\\
+%		\CALL{dec\_power}{P\_sample[R], p_{success}^{data}[R], p_{success}^{ref}[R]}\\
+%		%
+%		%\COMMENT{(2) Update $ref\_power$}\\
+%		\CALL{inc\_power}{P\_ref[R], p_{success}^{ref}[R], 1}\\
+%		\CALL{dec\_power}{P\_ref[R], p_{success}^{ref}[R], 1}\\
+%		%
+%		%\COMMENT{(3) Update $data\_power$}\\
+%		P\_data[R] = P\_sample[R] +  \Delta
+%\ENDPROCEDURE
+% \end{pseudocode}
+%\caption{Blues control algorithm}
+%\label{fig:blues}
+%\end{figure}
 
 
 

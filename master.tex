@@ -21,6 +21,8 @@ openright]{book}
 \usepackage{color,pstricks}
 % To allow me to use letters with accent
 %\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usepackage{ctable}
 \usepackage[utf8]{inputenc}
 
 % Fonts
@@ -47,7 +49,7 @@ openright]{book}
 %for nice tables
 \usepackage{multirow}
 %\usepackage{booktabs}
-\usepackage{ctable}
+
 
 %for nice item lists
 \usepackage{paralist}
@@ -70,7 +72,7 @@ openright]{book}
 %annotate TODO stuff
 \usepackage[colorinlistoftodos, textwidth=4cm, shadow]{todonotes}
 \usepackage{lscape}
-
+\usepackage{epstopdf}
 %pseudocode package
 \usepackage{pseudocode}
 
@@ -151,14 +153,14 @@ openright]{book}
 
 %ABSTRACT_DE
 \begin{otherlanguage*}{german}
-  \include{abstract_de}
+ \include{abstract_de}
 \end{otherlanguage*}
 
 %ACKNOWLAGEMENTS
-\include{acknowledgments}
+%\include{acknowledgments}
 
 %PUBLICATIONS & COLLABORATORS
-\include{paper-collaborators}
+%\include{paper-collaborators}
 
 %EIDESSTATTLICHE ERKLAERUNG
 \include{eid}
@@ -169,6 +171,14 @@ openright]{book}
 %TOC PAGE
 \tableofcontents
 
+%ABBILDUNGSVERZEICHNIS
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+%TABELLENVERZEICHNIS
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
 %MAIN CONTENT
 \mainmatter \pagestyle{fancy}
 %\pagestyle{headings}
@@ -176,7 +186,7 @@ openright]{book}
 \include{chapter-2_related_work}
 \include{chapter-3_testbed}
 \include{chapter-4_measurement_tools}
-\include{chapter-5_algorithm}
+%\include{chapter-5_algorithm}
 \include{chapter-6_conclusion}
 
 %BIBLIOGRAPHY
@@ -186,13 +196,6 @@ openright]{book}
 \fancyhead[LO]{\normalfont Bibliography}
 \bibliography{bibliography/IEEEabrv,bibliography/example}
 
-%ABBILDUNGSVERZEICHNIS
-\addcontentsline{toc}{chapter}{List of Figures}
-\listoffigures
-
-%TABELLENVERZEICHNIS
-\addcontentsline{toc}{chapter}{List of Tables}
-\listoftables
 
 %APPENDIX
 %\appendix

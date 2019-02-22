@@ -3,8 +3,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 \label{chap:introduction}
+The use of wireless communication is on a steady rise. Not only in the home and industry environment,
+but also in medical facilities. There are wireless patient monitoring systems available, as well as 
+endoscopes and other surgical equipment, without the need for a cable.
+Using wireless equipment reduces the struggle with cable management in the surgery and enables the operating
+personal to be even more effective.\\
+Another use of wireless equipment is post surgery/disease treatment in rural areas. Deploying a way to communicate
+with the attending physician, without the need to take a long ride to the next hospital or to get to the patient
+eases the treatment a lot. On side equipment can be installed at the patient side for easy communication and monitoring.\\
+In this work we will focus on the second use case\\
+For both use cases a robust and reliable wireless communication is needed.
+In the case of the hospital a lot of moving people, running equipment and walls can attenuate the signal and distort wave
+propagation. In the case of home installed equipment we expect more static attenuation, due to walls and running equipment, like micro wave ovens
+and TVs. Another muting effect that we expect is, that wireless routers are usually hidden somewhere, which causes sub optimal wave propagation.\\
 
-Introduction to the overall topic.
+Resource allocation algorithms aim to provide high and robust throughput. As there are multiple algorithms available, which we expect to react differently on
+disturbing effects an evaluation is needed to choose the best for a given application.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,20 +45,24 @@ Why is this an important problem ?
 In summary, the main contributions of this thesis are:
 
 \begin{itemize}
-\item{\bf Tools}
-  \begin{itemize}
-    \item {\it Design and implementation of measurement tool \textit{Moni} to collect information:} In order to be able to analyze the impact, we needed direct measurements from the lower layer.
-  \end{itemize}
-\item {\bf Algorithm \& Implementation}
- 	\begin{itemize}
-    	\item {\it Linux sublayer extension to enable allocation per packet:} To enable setting per packet we extend Linux subsystem.
-    	\item {\it Design and implementation of our joint controller}: We designed and implemented a joint controller within the Linux kernel.
-	\end{itemize}
-\item {\bf Measurements}
-  \begin{itemize}
-      \item {\it Feasibility of parameter control and its constraints:} We explore the capabilities of today's hardware and explored the ability to set different parameters.
-	    \item {\it Validation and Performance Analysis:} We perform several validation experiments that confirm trobust operation.
-  \end{itemize}
+    \item \bf Measurements
+    
+    \item \bf ...
+    
+%\item{\bf Tools}
+%  \begin{itemize}
+%    \item {\it Design and implementation of measurement tool \textit{Moni} to collect information:} In order to be able to analyze the impact, we needed direct measurements from the lower layer.
+%  \end{itemize}
+%\item {\bf Algorithm \& Implementation}
+% 	\begin{itemize}
+%    	\item {\it Linux sublayer extension to enable allocation per packet:} To enable setting per packet we extend Linux subsystem.
+%    	\item {\it Design and implementation of our joint controller}: We designed and implemented a joint controller within the Linux kernel.
+%	\end{itemize}
+%\item {\bf Measurements}
+%  \begin{itemize}
+%      \item {\it Feasibility of parameter control and its constraints:} We explore the capabilities of today's hardware and explored the ability to set different parameters.
+%	    \item {\it Validation and Performance Analysis:} We perform several validation experiments that confirm trobust operation.
+%  \end{itemize}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,12 +73,12 @@ In summary, the main contributions of this thesis are:
 \section{Thesis outline}
 \label{sec:intro:outline}
 
-The rest of this thesis is organized as follows:
+The rest of this thesis is organised as follows:
 
 \begin{compactitem}
-  \item In Chapter 2, we discuss the theoretical and practical approaches.
+  \item In Chapter 2, we discuss the different algorithms, measurement parameter and medical applications.
   \item In Chapter 3, we present our Testbed in detail.
-  \item In Chapter 4, we present our in-kernel monitoring tool .
-  \item In Chapter 5, we present the design, the Linux implementation, the validation and performance evaluation of our controller.
-  \item In Chapter 6, we summarize the contributions and limitations of our systems, and outline several directions for future work.
+  \item In Chapter 4, we present our measurement methods and results.
+  %\item In Chapter 5, we present the design, the Linux implementation, the validation and performance evaluation of our controller.
+  \item In Chapter 5, we summarise the contributions and limitations of our systems, and outline several directions for future work.
 \end{compactitem}

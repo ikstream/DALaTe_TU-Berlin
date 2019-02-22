@@ -32,68 +32,83 @@ Finally, we conclude with a summary and open problems.
 %%%%%%%%%%%%   SECTION   %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Control theory}
-\label{s:single_control}
-
+\section{Ressource Allocation Algorithms}
+\label{s:algorithms}
 %
-In this section, we discuss these approaches in their separate sections.
+In this section, we discuss the approaches the different algorithms are using in their separate sections.
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%   SUB-SECTION   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Old Control}
-\label{ss:oc}
+\subsection{Minstrel}
+\label{ss:minstrel}
 
-
-%summary table of old protocols
-\begin{landscape}
-\ctable[
-	cap	= Summary of old Control (OC) Algorithms,
-	caption = Summary of old Control (OC) Algorithms,
-	label	= tab:oc_summary,
-	pos  	= h
-]{lccccc}{
-%
-\tnote[1]{Abbreviations: Obj: Objective, E: Energy, T: Topology, C: Capacity, Dist.: Distributed, Cent.:Centralized, synch: Synchronized, P: Prototype}
-\tnote[2]{Old conditions are similar in space and time.}
-\tnote[3]{Ideal comm: Overhearing any transmissions.}
-\tnote[4]{New control considered.}
-\tnote[5]{Angles between 5\textdegree to 120\textdegree are considered.}
-%
-} {
-	\FL
-	%
-	\textbf{Protocol}			& \textbf{Obj.}\tmark[1]	& \textbf{Granularity}	& \textbf{Type of Control} & \textbf{PHY layer assumptions} & \textbf{Validation}\ML
-	%
-        PAR~\cite{Chen02-WNJ}			& E	& Per-packet	& Dist.	& Sym\tmark[2], ideal comm.\tmark[3],omni\tmark[4] & \no	\NN
-        \hline	
-	TER~\cite{154a}		& T	& Per-network	& Cent.	& Sym, ideal comm.,omni & \yes (Routing)	\NN
-	MLP~\cite{aazhang88}		& T	& Per-cluster	& Cent.	& Sym, ideal comm.,omni & \yes (Routing)	\NN
-        \hline	
-	PCM~\cite{FuInfocom03}			& C	& Per-packet	& Dist.	& Sym, ideal comm., omni & \no	\NN
-	POW~\cite{aiello03}	& C	& Per-packet	& Dist.	& Sym, ideal comm., omni & \no	\NN
-	MID~\cite{callaway02}	& C	& Per packet	& Dist.	& Directional\tmark[5]	& \yes (MAC,WARP)	\NN
-	DIR~\cite{bianchi00}			& C	& Per slot	& Cent.	& Directional	& \yes (MAC,Madwifi)	\NN
-	SPE~\cite{crow97}			& C	& Per slot	& Cent.	& Directional	& \yes 	(Multi-radio)	\LL
-}
-\end{landscape}
-
-
-In summary, it can be concluded that control does not bring energy savings.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%   SUB-SECTION   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{New Control}
-\label{ss:trc}
-
-In this section, we summarize the algorithms in literature.
+\subsection{Minstrel-Blues}
+\label{ss:minstrel-b}
 %
-Table~\ref{tab:oc_summary} summarizes the approaches considered in this section.
+
+In this section, we give an introduction to the Minstrel-Blues algorithm.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%   SUB-SECTION   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Rhapsody}
+\label{ss:rhapsody}
+%
+
+In this section, we provide an overview of the rhapsody algorithm.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%   SECTION   %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quality Of Service}
+\label{sec:measurement:qos}
+%
+Within this section we describe Quality of Service
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  SUB-SECTION      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Latency}
+\label{sec:measurementg:latency}
+%
+In this section, we describe latency effects on QoS.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    SUB-SECTION    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Packet Loss}
+\label{sec:measurementg:packetloss}
+%
+In this section, we explain the effects packet loss has on QoS.
+%
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%   SECTION   %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Medical Applications}
+
+In this section, we give an overview of the medical applications targeted with this work.
+We also define the demands each application has to the QoS parameters.
 %
 
 
@@ -104,7 +119,7 @@ Table~\ref{tab:oc_summary} summarizes the approaches considered in this section.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 
-In this section, we gave an overview of the research on both theoretical and practical control.
+In this section, we gave an overview of the used algorithms, the Quality of Service parameters and the targeted medical applications.
 %
 
 
